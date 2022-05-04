@@ -4,25 +4,26 @@ import { createShip } from '../ship';
 
 describe('tests invalid arguments to createShip()', () => {
   it('throws if no argument provided', () => {
-    expect(() => createShip()).toThrow();
+    expect(createShip()).toBeUndefined();
   });
 
   it('throws if called with length 0', () => {
-    expect(() => createShip(0)).toThrow();
+    expect(createShip(0)).toBeUndefined();
   });
 
   it('throws if called with a negative number', () => {
-    expect(() => createShip(-1)).toThrow();
+    expect(createShip(-1)).toBeUndefined();
   });
 
   it('throws if called with a string', () => {
-    expect(() => createShip('3')).toThrow();
+    expect(createShip('3')).toBeUndefined();
   });
 });
 
 describe('tests invalid arguments to hit()', () => {
   const ship = createShip(3);
-  it('throws if the position is greater than the length of the ship', () => {
+  it('throws if the position is out of range', () => {
+    expect(() => ship.hit(-1)).toThrow();
     expect(() => ship.hit(3)).toThrow();
     expect(() => ship.hit(4)).toThrow();
   });
