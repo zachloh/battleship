@@ -20,18 +20,35 @@ describe('tests invalid arguments to createShip()', () => {
   });
 });
 
-describe('tests invalid arguments to hit()', () => {
-  const ship = createShip(3);
-  it('throws if the position is out of range', () => {
-    expect(() => ship.hit(-1)).toThrow();
-    expect(() => ship.hit(3)).toThrow();
-    expect(() => ship.hit(4)).toThrow();
+describe('tests hit()', () => {
+  let ship;
+  beforeEach(() => {
+    ship = createShip(3);
   });
 
-  it('does not throw if valid index provided', () => {
-    expect(() => ship.hit(0)).not.toThrow();
-    expect(() => ship.hit(1)).not.toThrow();
-    expect(() => ship.hit(2)).not.toThrow();
+  it('hits the right position - 0', () => {
+    ship.hit(0);
+    expect(ship.getIsHit()).toEqual([true, false, false]);
+  });
+
+  it('hits the right position - 1', () => {
+    ship.hit(1);
+    expect(ship.getIsHit()).toEqual([false, true, false]);
+  });
+
+  it('hits the right position - 2', () => {
+    ship.hit(2);
+    expect(ship.getIsHit()).toEqual([false, false, true]);
+  });
+
+  it('does not hit if index < 0', () => {
+    ship.hit(-1);
+    expect(ship.getIsHit()).toEqual([false, false, false]);
+  });
+
+  it('does not hit if index is out of range', () => {
+    ship.hit(3);
+    expect(ship.getIsHit()).toEqual([false, false, false]);
   });
 });
 

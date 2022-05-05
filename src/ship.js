@@ -6,15 +6,15 @@ const createShip = (length) => {
   const isHit = Array(length).fill(false);
 
   const hit = (index) => {
-    if (index < 0 || index > length - 1) {
-      throw new Error('index provided is out of range');
-    }
+    if (index < 0 || index > length - 1) return;
     isHit[index] = true;
   };
 
+  const getIsHit = () => isHit;
+
   const isSunk = () => isHit.every((item) => item === true);
 
-  return { hit, isSunk };
+  return { hit, getIsHit, isSunk };
 };
 
 export { createShip };
