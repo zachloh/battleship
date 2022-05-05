@@ -3,19 +3,19 @@
 import { createShip } from '../ship';
 
 describe('tests invalid arguments to createShip()', () => {
-  it('throws if no argument provided', () => {
+  it('returns if no argument provided', () => {
     expect(createShip()).toBeUndefined();
   });
 
-  it('throws if called with length 0', () => {
+  it('returns if called with length 0', () => {
     expect(createShip(0)).toBeUndefined();
   });
 
-  it('throws if called with a negative number', () => {
+  it('returns if called with a negative number', () => {
     expect(createShip(-1)).toBeUndefined();
   });
 
-  it('throws if called with a string', () => {
+  it('returns if called with a string', () => {
     expect(createShip('3')).toBeUndefined();
   });
 });
