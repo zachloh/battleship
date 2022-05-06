@@ -67,8 +67,10 @@ describe('receiving attack', () => {
     });
   });
 
+  let mockHit;
   beforeEach(() => {
     gameboard.placeShip([10, 11, 12]);
+    mockHit = jest.spyOn(gameboard.getShips()[0].ship, 'hit');
   });
 
   it('adds a hit correctly', () => {
@@ -106,16 +108,19 @@ describe('receiving attack', () => {
     it('gets index 0 correctly', () => {
       gameboard.receiveAttack(10);
       expect(gameboard.getIndexOfHitShip(10)).toBe(0);
+      expect(mockHit).toHaveBeenCalledWith(0);
     });
 
     it('gets index 1 correctly', () => {
       gameboard.receiveAttack(11);
       expect(gameboard.getIndexOfHitShip(11)).toBe(1);
+      expect(mockHit).toHaveBeenCalledWith(1);
     });
 
     it('gets index 2 correctly', () => {
       gameboard.receiveAttack(12);
       expect(gameboard.getIndexOfHitShip(12)).toBe(2);
+      expect(mockHit).toHaveBeenCalledWith(2);
     });
   });
 });
