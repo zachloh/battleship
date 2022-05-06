@@ -11,12 +11,11 @@ const createGameboard = () => {
   const getHits = () => hits;
   const getMisses = () => misses;
 
-  const placeShips = (coordinates) => {
+  const placeShip = (coordinates) => {
     if (!coordinates.length) return;
     ships.push({
       coordinates,
       ship: createShip(coordinates.length),
-      isSunk: false,
     });
   };
 
@@ -34,25 +33,38 @@ const createGameboard = () => {
   const isHit = (position) =>
     ships.some((ship) => ship.coordinates.includes(position));
 
+  const getHitShip = (position) =>
+    ships.find((ship) => ship.coordinates.includes(position));
+
+  const getIndexOfHitShip = (position) =>
+    getHitShip(position).coordinates.findIndex((coordinate) =>
+      coordinate === position);
+
   const receiveAttack = (position) => {
     if (!isValidAttack(position)) return;
 
     if (isHit(position)) {
       hits.push(position);
 
-      // attack ship
-      // check if sunk
+      // Attack ship
+      const index = getIndexOfHitShip(position);
+      const hitShip = getHitShip(position);
+      hitShip.ship.hit(index);
     } else {
       misses.push(position);
     }
   };
 
+  const isGameOver = () => ships.every((ship) => ship.ship.isSunk() === true);
+
   return {
     getShips,
     getHits,
     getMisses,
-    placeShips,
+    placeShip,
+    getIndexOfHitShip,
     receiveAttack,
+    isGameOver,
   };
 };
 
