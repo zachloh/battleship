@@ -64,7 +64,6 @@ describe('tests if a ship sinks (length of 3)', () => {
 
   it('does not sink when only 1 position is hit', () => {
     ship.hit(2);
-
     expect(ship.isSunk()).toBe(false);
   });
 
@@ -72,7 +71,6 @@ describe('tests if a ship sinks (length of 3)', () => {
     for (let i = 0; i < 2; i++) {
       ship.hit(i);
     }
-
     expect(ship.isSunk()).toBe(false);
   });
 
@@ -80,7 +78,6 @@ describe('tests if a ship sinks (length of 3)', () => {
     for (let i = 0; i < 3; i++) {
       ship.hit(i);
     }
-
     expect(ship.isSunk()).toBe(true);
   });
 });
