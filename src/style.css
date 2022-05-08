@@ -1,0 +1,148 @@
+@font-face {
+  font-family: 'press_start_2p';
+  src: url('./assets/fonts/pressstart2p-regular-webfont.woff2') format('woff2'),
+       url('./assets/fonts/pressstart2p-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'roboto';
+  src: url('./assets/fonts/roboto-regular-webfont.woff2') format('woff2'),
+       url('./assets/fonts/pressstart2p-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+:root {
+  --background: #eee;
+  --black: #000;
+  --white: #fff;
+  --dark-grey: #333;
+  --light-grey: #ccc;
+  --green: #00ff0055;
+  --red: #ff000055;
+  --hit: #ed2939;
+  --header-height: calc(4rem + 2rem);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--background);
+  font-family: 'roboto', sans-serif;
+}
+
+.header {
+  font-family: 'press_start_2p', sans-serif;
+  text-align: center;
+  font-size: 4rem;
+  padding-top: 2rem;
+}
+
+.content {
+  min-height: calc(100vh - var(--header-height));
+  display: grid;
+  grid-template-rows: 1fr 2.5fr;
+}
+
+.game-message {
+  justify-self: center;
+  align-self: center;
+  font-size: 2rem;  
+  color: var(--dark-grey);
+}
+
+.gameboard-container {
+  justify-self: center;
+  display: flex;
+  width: 60%;
+  gap: 100px; 
+  justify-content: space-around;
+}
+
+.gameboard {
+  display: grid;
+  grid-template-columns: repeat(10, 40px);
+  grid-template-rows: repeat(10, 40px);
+}
+
+.gameboard.player {
+  position: relative;
+}
+
+.grid {
+  border: 2px solid var(--black);
+  margin: -2px 0 0 -2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid.ship {
+  background-color: var(--dark-grey);
+}
+
+.grid.pointer {
+  cursor: pointer;
+}
+
+.grid.pointer:hover {
+  background-color: var(--light-grey);
+}
+
+.grid.hit::before,
+.grid.miss::before {
+  content: '';
+  width: 15px;
+  height: 15px;
+  border-radius: 7.5px;
+}
+
+.grid.hit::before {
+  background-color: var(--hit);
+}
+
+.grid.miss::before {
+  background-color: var(--dark-grey);
+}
+
+.grid.sunk {
+  background-color: var(--hit);
+}
+
+.rotate {
+  position: absolute;
+  top: 430px;
+  left: 200px;
+  transform: translateX(-50%);
+  font-family: inherit;
+  font-size: 1.5rem;
+  background-color: var(--dark-grey);
+  color: var(--white);
+  padding: 10px 30px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.rotate:hover {
+  transform: translateX(-50%) scale(1.05);
+}
+
+.rotate:active {
+  transform: translateX(-50%) scale(1.02);
+}

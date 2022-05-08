@@ -11,6 +11,12 @@ const createPlayer = () => {
 const createComputerPlayer = () => {
   const attackedPositions = [];
 
+  const getAttackedPositions = () => attackedPositions;
+
+  const addAttackedPosition = (position) => {
+    attackedPositions.push(position);
+  };
+
   const getRandomPosition = () => {
     let position;
     do {
@@ -27,6 +33,8 @@ const createComputerPlayer = () => {
   };
 
   return {
+    getAttackedPositions,
+    addAttackedPosition,
     getRandomPosition,
     sendAttack,
   };
